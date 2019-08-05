@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class DeviceMager : Singleton<DeviceMager>
@@ -8,11 +9,25 @@ public class DeviceMager : Singleton<DeviceMager>
     private AndroidJavaClass javaDev;
     private IntPtr classId;
 
+    private delegate string RtnStrDelegate();
+    private delegate int RtnIntDelegate();
+
     public override void Init()
     {
         javaDev = new AndroidJavaClass("com.example.hyz.devlib.Device");
         classId = javaDev.GetRawClass();
         //DevInit();
+        RtnStrDelegate cbvn = GetVersionName;
+        IntPtr cbvn_ptr = Marshal.GetFunctionPointerForDelegate(cbvn);
+        CppInterface.SetVersionNamePtr(cbvn_ptr);
+
+        RtnIntDelegate cbvc = GetVersionCode;
+        IntPtr cbvc_ptr = Marshal.GetFunctionPointerForDelegate(cbvc);
+        CppInterface.SetVersionCodePtr(cbvc_ptr);
+
+        RtnStrDelegate cban = GetAppName;
+        IntPtr cban_ptr = Marshal.GetFunctionPointerForDelegate(cban);
+        CppInterface.SetAppNamePtr(cban_ptr);
     }
 
     //private void DevInit()
