@@ -19,5 +19,10 @@ Unity Interact with android java
       }
   ~~~
 
-  
 
+
+
+##### 环境：
+
+- Unity 2018.3
+- AndroidStudio 3.2
