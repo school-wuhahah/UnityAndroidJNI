@@ -31,15 +31,27 @@ void DevFuncs::set_appNamePtr(rtnStrPtr ptr)
 
 std::string DevFuncs::getVersionName() 
 {
-	return DevFuncs::getVersionNamePtr();
+	if (DevFuncs::getVersionNamePtr != nullptr)
+	{
+		return DevFuncs::getVersionNamePtr();
+	}
+	return "";
 }
 
 int DevFuncs::getVersionCode()
 {
-	return DevFuncs::getVersionCodePtr();
+	if (DevFuncs::getVersionCodePtr != nullptr)
+	{
+		return DevFuncs::getVersionCodePtr();
+	}
+	return -1;
 }
 
 std::string DevFuncs::getAppName()
 {
-	return DevFuncs::getAppNamePtr();
+	if (DevFuncs::getAppNamePtr != nullptr)
+	{
+		return DevFuncs::getAppNamePtr();
+	}
+	return "";
 }
